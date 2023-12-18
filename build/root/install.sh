@@ -107,5 +107,27 @@ sed -i '/# PERMISSIONS_PLACEHOLDER/{
 }' /usr/local/bin/init.sh
 rm /tmp/permissions_heredoc
 
+# env vars
+####
+
+cat <<'EOF' > /tmp/envvars_heredoc
+
+export FDROID_COMMAND=$(echo "${FDROID_COMMAND}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
+if [[ ! -z "${FDROID_COMMAND}" ]]; then
+	echo "[info] FDROID_COMMAND defined as '${FDROID_COMMAND}'" | ts '%Y-%m-%d %H:%M:%.S'
+else
+	echo "[info] FDROID_COMMAND not defined,(via -e FDROID_COMMAND), exiting script..." | ts '%Y-%m-%d %H:%M:%.S'
+	exit 1
+fi
+
+EOF
+
+# replace env vars placeholder string with contents of file (here doc)
+sed -i '/# ENVVARS_PLACEHOLDER/{
+    s/# ENVVARS_PLACEHOLDER//g
+    r /tmp/envvars_heredoc
+}' /usr/local/bin/init.sh
+rm /tmp/envvars_heredoc
+
 # cleanup
 cleanup.sh
