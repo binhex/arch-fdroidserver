@@ -1,19 +1,18 @@
 **Application**
 
-[Jackett](https://github.com/Jackett/Jackett)
+[F-Droid Server](https://f-droid.org/en/)
 
 **Description**
 
-Jackett works as a proxy server: it translates queries from apps (Sonarr, Radarr, SickRage, CouchPotato, Mylar, DuckieTV, etc) into tracker-site-specific http queries, parses the html response, then sends results back to the requesting software. This allows for getting recent uploads (like RSS) and performing searches. Jackett is a single repository of maintained indexer scraping & translation logic - removing the burden from other apps.
+F-Droid is an installable catalogue of FOSS (Free and Open Source Software) applications for the Android platform. The client makes it easy to browse, install, and keep track of updates on your device.
 
 **Build notes**
 
-Latest stable Jackett release from Arch Linux AUR.
+Latest stable F-Droid Server release from Arch Linux AUR.
 
 **Usage**
 ```
 docker run -d \
-    -p 9117:9117 \
     --name=<container name> \
     -v <path for config files>:/config \
     -v <path for data files>:/data \
@@ -21,27 +20,26 @@ docker run -d \
     -e UMASK=<umask for created files> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
-    binhex/arch-jackett
+    binhex/arch-fdroidserver
 ```
 
 Please replace all user variables in the above command defined by <> with the correct values.
 
 **Access application**
 
-`http://<host ip>:9117`
+CLI only
 
 **Example**
 ```
 docker run -d \
-    -p 9117:9117 \
-    --name=jackett \
-    -v /apps/docker/jackett:/config \
-    -v /apps/docker/sabnzbd/watched:/data \
+    --name=fdroidserver \
+    -v /apps/docker/fdroidserver:/config \
+    -v /apps/docker/fdroidserver:/data \
     -v /etc/localtime:/etc/localtime:ro \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
-    binhex/arch-jackett
+    binhex/arch-fdroidserver
 ```
 
 **Notes**
