@@ -13,9 +13,9 @@ Latest stable F-Droid Server release from Arch Linux AUR.
 **Usage**
 ```
 docker run -d \
+    --rm \
     --name=<container name> \
     -v <path for config files>:/config \
-    -v <path for data files>:/data \
     -v /etc/localtime:/etc/localtime:ro \
     -e FDROID_COMMAND=<commaand to issue> \
     -e UMASK=<umask for created files> \
@@ -33,9 +33,9 @@ CLI only
 **Example**
 ```
 docker run -d \
+    --rm \
     --name=fdroidserver \
     -v /apps/docker/fdroidserver:/config \
-    -v /apps/docker/fdroidserver:/data \
     -v /etc/localtime:/etc/localtime:ro \
     -e FDROID_COMMAND=init \
     -e UMASK=000 \
