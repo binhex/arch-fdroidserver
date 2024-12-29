@@ -55,16 +55,6 @@ aur_packages="fdroidserver android-sdk-build-tools"
 # call aur install script (arch user repo)
 source aur.sh
 
-# custom
-####
-
-# hack to prevent "WARNING: Invalid image file at <path to image file>: module 'PIL.Image' has no attribute 'ANTIALIAS'" due to later Pillow 10.x not having ANTIALIAS
-# see https://stackoverflow.com/questions/76616042/attributeerror-module-pil-image-has-no-attribute-antialias
-sed -i -e 's~Image\.ANTIALIAS~Image.Resampling.LANCZOS~g' '/usr/lib/python3.11/site-packages/fdroidserver/update.py'
-
-# TODO hack to prevent "ModuleNotFoundError: No module named 'androguard.core.bytecodes'"
-# see https://gitlab.com/fdroid/fdroidserver/-/issues/1186
-
 # container perms
 ####
 
