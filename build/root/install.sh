@@ -50,10 +50,15 @@ fi
 ####
 
 # define aur packages
-aur_packages="fdroidserver android-sdk-build-tools"
+aur_packages="android-sdk-build-tools"
 
 # call aur install script (arch user repo)
 source aur.sh
+
+# python packages
+####
+
+python.sh --create-virtualenv 'yes' --create-pyenv 'yes' --pyenv-version '3.12' --pip-packages 'fdroidserver'
 
 # container perms
 ####
