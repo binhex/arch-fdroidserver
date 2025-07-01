@@ -16,7 +16,6 @@ Latest stable F-Droid Server release from Arch Linux AUR.
 
 ```bash
 docker run -d \
-
     --rm \
     --name=<container name> \
     -v <path for config files>:/config \
@@ -25,9 +24,7 @@ docker run -d \
     -e UMASK=<umask for created files> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
-
     binhex/arch-fdroidserver
-
 ```
 
 Please replace all user variables in the above command defined by <> with the
@@ -41,7 +38,6 @@ CLI only
 
 ```bash
 docker run -d \
-
     --rm \
     --name=fdroidserver \
     -v /apps/docker/fdroidserver:/config \
@@ -50,9 +46,7 @@ docker run -d \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
-
     binhex/arch-fdroidserver
-
 ```
 
 ## Notes
@@ -62,7 +56,6 @@ command for the user you want to run the container as:-
 
 ```bash
 id <username>
-
 ```
 
 ___
