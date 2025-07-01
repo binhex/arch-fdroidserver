@@ -1,18 +1,22 @@
-**Application**
+# Application
 
 [F-Droid Server](https://f-droid.org/en/)
 
-**Description**
+## Description
 
-F-Droid is an installable catalogue of FOSS (Free and Open Source Software) applications for the Android platform. The client makes it easy to browse, install, and keep track of updates on your device.
+F-Droid is an installable catalogue of FOSS (Free and Open Source Software)
+applications for the Android platform. The client makes it easy to browse,
+install, and keep track of updates on your device.
 
-**Build notes**
+## Build notes
 
 Latest stable F-Droid Server release from Arch Linux AUR.
 
-**Usage**
-```
+## Usage
+
+```bash
 docker run -d \
+
     --rm \
     --name=<container name> \
     -v <path for config files>:/config \
@@ -21,18 +25,23 @@ docker run -d \
     -e UMASK=<umask for created files> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
+
     binhex/arch-fdroidserver
+
 ```
 
-Please replace all user variables in the above command defined by <> with the correct values.
+Please replace all user variables in the above command defined by <> with the
+correct values.
 
-**Access application**
+## Access application
 
 CLI only
 
-**Example**
-```
+## Example
+
+```bash
 docker run -d \
+
     --rm \
     --name=fdroidserver \
     -v /apps/docker/fdroidserver:/config \
@@ -41,16 +50,21 @@ docker run -d \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
+
     binhex/arch-fdroidserver
-```
-
-**Notes**
-
-User ID (PUID) and Group ID (PGID) can be found by issuing the following command for the user you want to run the container as:-
 
 ```
+
+## Notes
+
+User ID (PUID) and Group ID (PGID) can be found by issuing the following
+command for the user you want to run the container as:-
+
+```bash
 id <username>
+
 ```
+
 ___
 If you appreciate my work, then please consider buying me a beer  :D
 
