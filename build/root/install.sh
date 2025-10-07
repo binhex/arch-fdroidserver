@@ -58,7 +58,7 @@ fi
 aur_packages="android-sdk-build-tools"
 
 # call aur install script (arch user repo)
-source aur.sh
+aur.sh --aur-package "${aur_packages}"
 
 # python packages
 ####
