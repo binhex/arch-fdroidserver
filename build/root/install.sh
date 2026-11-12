@@ -107,14 +107,22 @@ rm /tmp/permissions_heredoc
 
 cat <<'EOF' > /tmp/envvars_heredoc
 
-export FDROID_COMMAND=$(echo "${FDROID_COMMAND}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
-if [[ ! -z "${FDROID_COMMAND}" ]]; then
-	echo "[info] FDROID_COMMAND defined as '${FDROID_COMMAND}'" | ts '%Y-%m-%d %H:%M:%.S'
-else
-	echo "[info] FDROID_COMMAND not defined,(via -e FDROID_COMMAND), exiting script..." | ts '%Y-%m-%d %H:%M:%.S'
-	exit 1
-fi
+# source in utility functions, need process_env_var
+source utils.sh
 
+# Define environment variables to process
+# Format: "VAR_NAME:DEFAULT_VALUE:REQUIRED:MASK"
+env_vars=(
+	"FDROID_COMMAND::true:false"
+	"ENABLE_STARTUP_SCRIPTS:no:false:false"
+	"STARTUP_SCRIPTS_MODE:wait:false:false"
+)
+
+# Process each environment variable
+for env_var in "${env_vars[@]}"; do
+	IFS=':' read -r var_name default_value required mask_value <<< "${env_var}"
+	process_env_var "${var_name}" "${default_value}" "${required}" "${mask_value}"
+done
 EOF
 
 # replace env vars placeholder string with contents of file (here doc)
